@@ -1,34 +1,28 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
 
-    // month converter from index / 0-11 values
-    function covertMonth(num){
+    // convert number to month
+    function covertMonth(number){
       let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-      // look into index with num 0-11
-      let computedRes = months[num];
-      return computedRes;
+      
+      let actualMonth = months[number];
+      return actualMonth;
     }
     
     // time func
-    function Time(){
-       // important to get new instant of the Date referrance
+    function getTime(){
       let date = new Date();
-      this.time = date.toLocaleTimeString();
-      this.year = date.getUTCFullYear();
       this.day = date.getUTCDate();
       this.month = date.getUTCMonth();
-      this.currentTime = date.toLocaleTimeString() + ' ' + covertMonth(this.month) + ' ' + this.day + ' ' + this.year;
+      this.currentTime = covertMonth(this.month) + ' ' + this.day;
       return this.currentTime;
     }
     
     
      function timeOutPut(){
       let where = document.getElementById('currentDay');
-      where.textContent = Time(); // 1:21:39 AM Dec 17 2017
+      where.textContent = getTime();
     }
     
-       // run every 1 secs
+       // will eventually update the day when it changes
     setInterval(timeOutPut, 1000);
   
 
@@ -40,7 +34,7 @@ function pastPresentFuture(){
   var hours = [
   ];
 
-  //assigning the variables in the array to the corrosponding time block in html
+  //assigning the variables in the array to the corrosponding time block in html and puts them in the array
   nine = document.getElementById('hour-9'); 
   hours.push(nine);
   ten = document.getElementById('hour-10');
@@ -81,7 +75,9 @@ pastPresentFuture()
 const editable = document.querySelector("textarea");
 
 editable.addEventListener("input", (e) => {
-  
+  var inputEvent;
+  inputEvent = inputEvent + `${e.data}`;
+  console.log(inputEvent.data);
 })
 function getParent(event)
 {
@@ -97,7 +93,7 @@ var userInput = getParent(event);
 var usu = userInput.children;
 var us = usu[1];
 
-console.log(inputEvent.data);
+
 
 };
 
