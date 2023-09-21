@@ -78,14 +78,33 @@ function pastPresentFuture(){
 }
 pastPresentFuture()
 
-let saveButtons = document.querySelectorAll('.button');
+const editable = document.querySelector("textarea");
 
-function clickSave() {
-
-console.log("YES")
+editable.addEventListener("input", (e) => {
+  
+})
+function getParent(event)
+{
+   return event.target.parentNode.parentNode;
 }
 
-saveButtons.addEventListener('click',clickSave);
+let saveButtons = document.querySelectorAll("button");
+
+function clickSave(event) {
+
+var parentElement = getParent(event);
+var userInput = getParent(event);
+var usu = userInput.children;
+var us = usu[1];
+
+console.log(inputEvent.data);
+
+};
+
+saveButtons.forEach((item) => {
+  item.addEventListener('click',clickSave)
+});
+
 
 
 
