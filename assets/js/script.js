@@ -72,13 +72,17 @@ function pastPresentFuture(){
 }
 pastPresentFuture()
 
+//adds the users input to a variable
 const editable = document.querySelector("textarea");
-
+var input = '';
 editable.addEventListener("input", (e) => {
-  var inputEvent;
-  inputEvent = inputEvent + `${e.data}`;
-  console.log(inputEvent.data);
-})
+  console.log(`${e.data}`);
+  
+  input = input + `${e.data}`;
+  console.log(input);
+  
+});
+//getting the parent to store a variable
 function getParent(event)
 {
    return event.target.parentNode.parentNode;
@@ -86,17 +90,117 @@ function getParent(event)
 
 let saveButtons = document.querySelectorAll("button");
 
+//creating variables for the text areas
+var description9Input = document.querySelector('#description9');
+var description10Input = document.querySelector('#description10');
+var description11Input = document.querySelector('#description11');
+var description12Input = document.querySelector('#description12');
+var description13Input = document.querySelector('#description13');
+var description14Input = document.querySelector('#description14');
+var description15Input = document.querySelector('#description15');
+var description16Input = document.querySelector('#description16');
+var description17Input = document.querySelector('#description17');
+
+//making a function when you click save
 function clickSave(event) {
 
-var parentElement = getParent(event);
-var userInput = getParent(event);
-var usu = userInput.children;
-var us = usu[1];
+//getting the parent element and where the descr is!
+var buttonElement = getParent(event);
+var timeBlockElement = buttonElement.children;
+var descriptionElement = timeBlockElement[1];
 
-
-
+//should update descr if something is in local storage however, I have done it wrong somehow and I'm not sure how to fix it
+//so basically whenever the code is run it says  Cannot set properties of null (setting 'innerHTML') which basically means its not defined yet
+//as I have defined it earlier in the code which leads me to believe that localStorage runs before anything else however delaying it to update when the pageloads doesnt either
+//which just makes me think ive done it all wrong, if so please instruct me on what I've done wrong and what I can do better. Thank you :)
+if (localStorage.getItem("desc9")){
+  description9Input.innerHTML= localStorage.getItem("desc9");
 };
 
+if (localStorage.getItem("desc10")){
+  description10Input.innerHTML= localStorage.getItem("desc10");
+};
+
+if (localStorage.getItem("desc11")){
+  description11Input.innerHTML= localStorage.getItem("desc11");
+};
+
+if (localStorage.getItem("desc12")){
+  description12Input.innerHTML= localStorage.getItem("desc12");
+};
+
+if (localStorage.getItem("desc13")){
+  description13Input.innerHTML= (localStorage.getItem("desc13"));
+};
+
+if (localStorage.getItem("desc14")){
+  description14Input.innerHTML= (localStorage.getItem("desc14"));
+};
+
+if (localStorage.getItem("desc15")){
+  description15Input.innerHTML= (localStorage.getItem("desc15"));
+};
+
+
+if (localStorage.getItem("desc16")){
+  description16Input.innerHTML= localStorage.getItem("desc16");
+};
+
+if (localStorage.getItem("desc17")){
+  description17Input.innerHTML= localStorage.getItem("desc17");
+};
+
+
+
+
+//makes a string out of the class list
+var dec = String(descriptionElement.classList);
+
+//store the user input based on what time block they wrote it
+if (dec.includes('description9') === true) {
+  JSON.stringify(localStorage.setItem("desc9",(input)));
+}
+
+
+if (dec.includes('description10') === true) {
+  localStorage.setItem("desc10", JSON.stringify(input));
+}
+
+if (dec.includes('description11') === true) {
+  localStorage.setItem("desc11", JSON.stringify(input));
+}
+
+if (dec.includes('description12') === true) {
+  localStorage.setItem("desc12", JSON.stringify(input));
+}
+
+if (dec.includes('description13') === true) {
+  localStorage.setItem("desc13", JSON.stringify(input));
+}
+
+if (dec.includes('description14') === true) {
+  localStorage.setItem("desc14", JSON.stringify(input));
+}
+
+if (dec.includes('description15') === true) {
+  localStorage.setItem("desc15", JSON.stringify(input));
+}
+
+if (dec.includes('description16') === true) {
+  localStorage.setItem("desc16", JSON.stringify(input));
+}
+
+if (dec.includes('description17') === true) {
+  localStorage.setItem("desc17", JSON.stringify(input));
+}
+//resets input
+input = '';
+
+
+event.preventDefault();
+};
+
+//adds the click event for the buttons
 saveButtons.forEach((item) => {
   item.addEventListener('click',clickSave)
 });
@@ -104,18 +208,3 @@ saveButtons.forEach((item) => {
 
 
 
-$(function () {
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
-
-  
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
-
-});
